@@ -48,16 +48,23 @@ function nbcs_moderation_queue_alerts_check_queue() {
 add_action( 'wp_insert_comment', 'nbcs_moderation_queue_alerts_check_queue' );
 
 function nbcs_moderation_queue_alerts_settings_api_init() {
-	if ( false === get_option( 'nbcs-moderation-queue' ) ) {
-		$defaults = array(
-			'minimum' => 100,
-			'email' => '',
-			'frequency' => 15,
-		);
+//	if ( false === get_option( 'nbcs-moderation-queue' ) ) {
+//		$defaults = array(
+//			'minimum' => 100,
+//			'email' => '',
+//			'frequency' => 15,
+//		);
 //		update_option( 'nbcs-moderation-queue', $defaults );
-		foreach ( $defaults as $field => $value ) {
-			update_option( 'nbcs-moderation-queue-' . $field, $value );
-		}
+//	}
+
+	if ( false === get_option( 'nbcs-moderation-queue-minimum' ) ) {
+		update_option( 'nbcs-moderation-queue-minimum', 100 );
+	}
+	if ( false === get_option( 'nbcs-moderation-queue-email' ) ) {
+		update_option( 'nbcs-moderation-queue-email', '' );
+	}
+	if ( false === get_option( 'nbcs-moderation-queue-frequency' ) ) {
+		update_option( 'nbcs-moderation-queue-frequency', 15 );
 	}
 	
 	add_settings_field( 'nbcs-moderation-queue-minimum', 'Moderation Queue Alerts', 'nbcs_moderation_queue_minimum_settings_field', 'discussion', 'default' );
