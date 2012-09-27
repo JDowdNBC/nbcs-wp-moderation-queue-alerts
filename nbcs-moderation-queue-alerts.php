@@ -27,12 +27,12 @@ function nbcs_moderation_queue_alerts_check_queue() {
 		}
 
 		$blog_name = get_bloginfo( 'name' );
-		$subject = sprintf( __( '%s Comment Alert - %d in queue' ), $blog_name, $comment_count['awaiting_moderation'] );
-		$message = sprintf( __( 'There are currently %d comments in the %s moderation queue.' ), $comment_count['awaiting_moderation'], $blog_name );
+		$subject = sprintf( __( '%s Comment Alert - %d in queue', 'nbcs-moderation-queue' ), $blog_name, $comment_count['awaiting_moderation'] );
+		$message = sprintf( __( 'There are currently %d comments in the %s moderation queue.', 'nbcs-moderation-queue' ), $comment_count['awaiting_moderation'], $blog_name );
 		if ( $options['frequency'] > 0 ) {
-			$message .= sprintf( __( ' You will not receive another alert for %d minutes.'), $options['frequency'] );
+			$message .= sprintf( __( ' You will not receive another alert for %d minutes.', 'nbcs-moderation-queue' ), $options['frequency'] );
 		}
-		$message .= '</p><p><a href="' . site_url( '/wp-admin/edit-comments.php' ) . '">' . __( 'Go to comments page' ) . '</a></p>';
+		$message .= '</p><p><a href="' . site_url( '/wp-admin/edit-comments.php' ) . '">' . __( 'Go to comments page', 'nbcs-moderation-queue' ) . '</a></p>';
 		
 		$headers = array(
 			'Content-Type: text/html',
@@ -97,11 +97,11 @@ function nbcs_moderation_queue_minimum_settings_field() {
 	);
 
 ?>
-	<label for="nbcs-moderation-queue-minimum"><?php _e( 'Send an alert email if the comment moderation queue has at least this many comments in it:' ); ?> <input type="text" name="nbcs-moderation-queue-minimum" id="nbcs-moderation-queue-minimum" size="2" value="<?php echo esc_attr( $options['minimum'] ); ?>" /></label>
+	<label for="nbcs-moderation-queue-minimum"><?php _e( 'Send an alert email if the comment moderation queue has at least this many comments in it:', 'nbcs-moderation-queue' ); ?> <input type="text" name="nbcs-moderation-queue-minimum" id="nbcs-moderation-queue-minimum" size="2" value="<?php echo esc_attr( $options['minimum'] ); ?>" /></label>
 	<br />
-	<label for="nbcs-moderation-queue-email"><?php _e( 'Send moderation queue alert emails to the following email address(es):' ); ?> <input type="text" name="nbcs-moderation-queue-email" id="nbcs-moderation-queue-email" size="45" value="<?php echo esc_attr( $options['email'] ); ?>" /></label>
+	<label for="nbcs-moderation-queue-email"><?php _e( 'Send moderation queue alert emails to the following email address(es):', 'nbcs-moderation-queue' ); ?> <input type="text" name="nbcs-moderation-queue-email" id="nbcs-moderation-queue-email" size="45" value="<?php echo esc_attr( $options['email'] ); ?>" /></label>
 	<br />
-	<label for="nbcs-moderation-queue-frequency"><?php _e( 'Do not send another moderation queue alert email until this many minutes have passed:' ); ?> <input type="text" name="nbcs-moderation-queue-frequency" id="nbcs-moderation-queue-frequency" size="2" value="<?php echo esc_attr( $options['frequency'] ); ?>" /></label>
+	<label for="nbcs-moderation-queue-frequency"><?php _e( 'Do not send another moderation queue alert email until this many minutes have passed:', 'nbcs-moderation-queue' ); ?> <input type="text" name="nbcs-moderation-queue-frequency" id="nbcs-moderation-queue-frequency" size="2" value="<?php echo esc_attr( $options['frequency'] ); ?>" /></label>
 <?php
 }
 
