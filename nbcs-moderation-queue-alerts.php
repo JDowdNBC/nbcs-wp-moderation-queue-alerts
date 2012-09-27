@@ -22,7 +22,7 @@ function nbcs_moderation_queue_alerts_check_queue() {
 		}
 
 		$blog_name = get_bloginfo( 'name' );
-		$subject = sprintf( __( '%s Comment Alert - %d in queue', 'nbcs-moderation-queue' ), $blog_name, $comment_count['awaiting_moderation'] );
+		$subject = sprintf( __( '%s Moderation Queue Alert', 'nbcs-moderation-queue' ), $blog_name );
 		$message = sprintf( __( 'There are currently %d comments in the %s moderation queue.', 'nbcs-moderation-queue' ), $comment_count['awaiting_moderation'], $blog_name );
 		if ( $options['frequency'] > 0 ) {
 			$message .= sprintf( __( ' You will not receive another alert for %d minutes.', 'nbcs-moderation-queue' ), $options['frequency'] );
