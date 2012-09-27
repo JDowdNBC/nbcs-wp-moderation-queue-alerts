@@ -31,13 +31,11 @@ function nbcs_moderation_queue_alerts_check_queue() {
 		
 		$headers = array(
 			'Content-Type: text/html',
-			'From: WordPress.com <donotreply@wordpress.com>',
+			'From: ' . get_bloginfo( 'admin_email' ),
 		);
 		
 		$subject = apply_filters( 'nbcs-moderation-queue-subject', $subject, $comment_count['awaiting_moderation'] );
 		$message = apply_filters( 'nbcs-moderation-queue-message', $message, $comment_count['awaiting_moderation'] );
-		
-		update_option('nbcs-test', $subject);
 		
 		wp_mail( $options['email'], $subject, $message, $headers );
 	}
