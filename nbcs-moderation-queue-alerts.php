@@ -34,8 +34,10 @@ function nbcs_moderation_queue_alerts_check_queue() {
 			'From: WordPress.com <donotreply@wordpress.com>',
 		);
 		
-		$subject = apply_filters( 'nbcs-moderation-queue-subject', $subject );
-		$message = apply_filters( 'nbcs-moderation-queue-message', $message );
+		$subject = apply_filters( 'nbcs-moderation-queue-subject', $subject, $comment_count['awaiting_moderation'] );
+		$message = apply_filters( 'nbcs-moderation-queue-message', $message, $comment_count['awaiting_moderation'] );
+		
+		update_option('nbcs-test', $subject);
 		
 		wp_mail( $options['email'], $subject, $message, $headers );
 	}
