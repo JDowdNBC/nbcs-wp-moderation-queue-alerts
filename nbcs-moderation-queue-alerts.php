@@ -30,7 +30,7 @@ function nbcs_moderation_queue_alerts_check_queue() {
 		$message .= '</p><p><a href="' . site_url( '/wp-admin/edit-comments.php' ) . '">' . __( 'Go to comments page', 'nbcs-moderation-queue' ) . '</a></p>';
 		
 		$from = apply_filters( 'nbcs-moderation-queue-from', get_bloginfo( 'admin_email' ) );
-		$headers = array('Content-Type: text/html');
+		$headers = array( 'Content-Type: text/html' );
 		if ( is_email( $from ) ) {
 			$headers[] = 'From: Moderation Queue Alert <' . $from . '>';
 		}
