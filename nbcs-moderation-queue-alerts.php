@@ -15,15 +15,15 @@ function nbcs_moderation_queue_alerts_check_queue() {
 		return; // Don't do anything if the settings have not been set
 	}
 
-	$comment_count = get_comment_count();
-	if ( $comment_count['awaiting_moderation'] >= intval( $options['minimum'] ) ) {
+	$comment_count = wp_count_comments();
+	if ( $comment_count->moderated >= intval( $options['minimum'] ) ) {
 		if ( intval( $options['frequency'] ) > 0 ) {
 			set_transient( 'nbcs-moderation-queue-delay', true, 60 * intval( $options['frequency'] ) );
 		}
 
 		$blog_name = get_bloginfo( 'name' );
 		$subject = sprintf( __( '%s Moderation Queue Alert', 'nbcs-moderation-queue' ), $blog_name );
-		$message = sprintf( __( 'There are currently %d comments in the %s moderation queue.', 'nbcs-moderation-queue' ), $comment_count['awaiting_moderation'], $blog_name );
+		$message = sprintf( __( 'There are currently %d comments in the %s moderation queue.', 'nbcs-moderation-queue' ), $comment_count->moderated, $blog_name );
 		if ( $options['frequency'] > 0 ) {
 			$message .= sprintf( __( ' You will not receive another alert for %d minutes.', 'nbcs-moderation-queue' ), $options['frequency'] );
 		}
@@ -31,8 +31,8 @@ function nbcs_moderation_queue_alerts_check_queue() {
 		
 		$headers = array( 'Content-Type: text/html' );
 		
-		$subject = apply_filters( 'nbcs-moderation-queue-subject', $subject, $comment_count['awaiting_moderation'] );
-		$message = apply_filters( 'nbcs-moderation-queue-message', $message, $comment_count['awaiting_moderation'] );
+		$subject = apply_filters( 'nbcs-moderation-queue-subject', $subject, $comment_count );
+		$message = apply_filters( 'nbcs-moderation-queue-message', $message, $comment_count );
 		
 		wp_mail( $options['email'], $subject, $message, $headers );
 	}
