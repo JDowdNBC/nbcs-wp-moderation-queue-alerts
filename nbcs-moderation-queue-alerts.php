@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Moderation Queue Alerts
+Plugin Name: NBCS Moderation Queue Alerts
 Description: Plugin to send emails when the comment moderation queue grows too large
 Version: 1.0
 Author: James Dowd
