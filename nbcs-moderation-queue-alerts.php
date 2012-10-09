@@ -27,7 +27,7 @@ function nbcs_moderation_queue_alerts_check_queue() {
 		if ( $options['frequency'] > 0 ) {
 			$message .= sprintf( __( ' You will not receive another alert for %d minutes.', 'nbcs-moderation-queue' ), $options['frequency'] );
 		}
-		$message .= '</p><p><a href="' . site_url( '/wp-admin/edit-comments.php' ) . '">' . __( 'Go to comments page', 'nbcs-moderation-queue' ) . '</a></p>';
+		$message .= '</p><p><a href="' . admin_url( 'edit-comments.php' ) . '">' . __( 'Go to comments page', 'nbcs-moderation-queue' ) . '</a></p>';
 		
 		$headers = array( 'Content-Type: text/html' );
 		
